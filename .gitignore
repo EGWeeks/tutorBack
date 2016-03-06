@@ -1,3 +1,7 @@
+
+# Dependency directory
 node_modules
 
+
+# Secret stuff shhhh
 .env
