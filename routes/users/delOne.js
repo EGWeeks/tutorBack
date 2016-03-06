@@ -12,7 +12,7 @@ function deleteOneUserHandler(req, res) {
   .del()
   .then(function() {
     req.session = {};
-    res.json('Deleted user: ' + req.params.id + '\n');
+    res.json('Deleted user: ' + req.params.id);
   });
 }
 
