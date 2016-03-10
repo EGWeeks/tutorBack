@@ -8,7 +8,7 @@ var cors = require('cors');
 var users = require('./routes/users');
 
 var app = express();
-
+ 
 app.use(cors());
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
