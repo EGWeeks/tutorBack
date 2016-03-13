@@ -3,6 +3,8 @@
 var Table = require('../../db/knex.js'),
     Users = Table('users');
 
+//Need to decode jwt
+// if(jwt.id === req.params.id) { query };
 var jwt = require('jsonwebtoken');
 
 // GET ‘/:id’ - shows users profile
