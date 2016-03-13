@@ -4,7 +4,8 @@ var Table = require('../../db/knex'),
     Users = Table('users');
 
 var crypto = require('../../utilities/crypto');
-
+   var jwt = require('jsonwebtoken');
+   
 // POST ‘/new’ - creates individual
 function postNewUserHandler(req, res) {
   var user = {};
@@ -26,7 +27,8 @@ function postNewUserHandler(req, res) {
         .returning()
         .insert(user, 'id')
         .then(function(id) {
-          res.json({message: 'Successfully created user: ' + user.first_name + ' with id number: ' + id});
+          var myToken = jwt.sign({"id": id, "user": req.body.email}, process.env.JWT_SECRET);
+          res.json(myToken);
         })
         .catch(function(err) {
           res.send('Error handling your submission');

@@ -4,6 +4,7 @@ var express = require('express');
 // var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var expressJWT = require('express-jwt');
 var cors = require('cors');
 var users = require('./routes/users');
 
@@ -14,8 +15,9 @@ app.use(cors());
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(bodyParser.urlencoded({extended: false }));
+app.use(expressJWT({secret: process.env.JWT_SECRET})
+   .unless({path: ['/', '/users/new', '/users/signin']}));
 app.use('/users', users);
 
 // catch 404 and forward to error handler
