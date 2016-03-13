@@ -6,7 +6,9 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var expressJWT = require('express-jwt');
 var cors = require('cors');
-var users = require('./routes/users');
+
+var users = require('./routes/users'),
+  profile = require('./routes/profile');
 
 var app = express();
  
@@ -18,8 +20,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false }));
 app.use(expressJWT({secret: process.env.JWT_SECRET})
    .unless({path: ['/', '/users/new', '/users/signin']}));
-app.use('/users', users);
 
+app.use('/users', users);
+app.use('/profile', profile);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

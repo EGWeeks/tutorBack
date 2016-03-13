@@ -5,8 +5,8 @@ var Table = require('../../db/knex.js'),
 
 var crypto = require('../../utilities/crypto');
 
-// PUT ‘/:id’ - updates individual resource
-function putOneUserHandler(req, res){
+// PUT ‘/:id’ - updates users profile
+function putProfile(req, res){
   var user = {};
 
   user.id         = Number(req.params.id);
@@ -28,4 +28,4 @@ function putOneUserHandler(req, res){
 
 }
 
-module.exports = putOneUserHandler;
+module.exports = putProfile;

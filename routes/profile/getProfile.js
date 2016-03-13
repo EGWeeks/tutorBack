@@ -1,10 +1,12 @@
 'use strict';
 
 var Table = require('../../db/knex.js'),
-  Users = Table('users');
+    Users = Table('users');
 
-// GET ‘/:id’ - shows individual resource
-function getOneUserHandler(req, res) {
+var jwt = require('jsonwebtoken');
+
+// GET ‘/:id’ - shows users profile
+function getProfile(req, res) {
   Users()
   .where({
     id: Number(req.params.id)
@@ -13,10 +15,14 @@ function getOneUserHandler(req, res) {
   .select('first_name', 'last_name', 'email')
   .then(function(userData) {
     delete userData.password;
+    console.log(userData);
     res.json( {
       user: userData
     });
+  })
+  .catch(function(err) {
+    console.log('Get Profile Error ' + err);
   });
 }
 
-module.exports = getOneUserHandler;
+module.exports = getProfile;
