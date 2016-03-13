@@ -28,7 +28,7 @@ function postNewUserHandler(req, res) {
         .insert(user, 'id')
         .then(function(id) {
           var myToken = jwt.sign({"id": id, "user": req.body.email}, process.env.JWT_SECRET);
-          res.json(myToken);
+          res.json({id: id, token: myToken});
         })
         .catch(function(err) {
           res.send('Error handling your submission');
