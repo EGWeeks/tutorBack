@@ -8,8 +8,7 @@ var getAll  = require('./users/getAll'),
 		getOne  = require('./users/getOne'),
 		putOne  = require('./users/putOne'),
 		delOne  = require('./users/delOne'),
-		signIn  = require('./users/signIn'),
-		signOut = require('./users/signOut');
+		signIn  = require('./users/signIn');
 
 	router.get('/', getAll); // <------------ GET ‘/’ - shows all resources
 	router.post('/new', postNew); // <------- POST ‘/new’ - creates individual
@@ -17,6 +16,5 @@ var getAll  = require('./users/getAll'),
 	router.put('/:id', putOne); // <--------- PUT ‘/:id’ - updates individual resource
 	router.delete('/:id', delOne); // <--- DELETE ‘/:id’ - removes resource
 	router.post('/signin', signIn); // <----- POST '/signin' - authenticates user on sign in
-	router.post('/signout', signOut); // <----- POST '/signout' - signs out current user
 
 module.exports = router;
