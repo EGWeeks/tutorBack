@@ -5,26 +5,41 @@ var Table = require('../../db/knex.js'),
 
 var crypto = require('../../utilities/crypto');
 
+    require('dotenv').load();
+
+var jwt = require('jsonwebtoken');
+
 // PUT ‘/:id’ - updates users profile
 function putProfile(req, res){
-  var user = {};
+  var decoded = jwt.decode(req.headers.authorization.split(' ')[1], process.env.JWT_SECRET);
+  var paramsId = parseFloat(req.params.id);
 
-  user.id         = Number(req.params.id);
-  user.first_name = req.body.firstName;
-  user.last_name  = req.body.lastName;
-  user.email      = req.body.email;
-  user.password   = req.body.password;
+  if(decoded.id === paramsId) {
+    var user = {};
 
-  crypto.hashPassword(user, function() {
-    Users()
-    .where({
-      id: user.id
-    })
-    .update(user)
-    .then(function() {
-      res.json({message: 'Updated user: ' + user.id});
+    user.id         = Number(req.params.id);
+    user.first_name = req.body.firstName;
+    user.last_name  = req.body.lastName;
+    user.email      = req.body.email;
+    //KNEX - if key hwas value of undefined it should be ignored 
+    user.password   = req.body.password;
+
+    crypto.hashPassword(user, function() {
+      Users()
+      .where({
+        id: user.id
+      })
+      .update(user)
+      .then(function() {
+        res.json({message: 'Updated user: ' + user.id});
+      })
+      .catch(function(err) {
+        res.json('Error Edit in user data ' + err);
+      });
     });
-  });
+  } else {
+    res.json('Error Editing Profile');
+  }
 
 }
 

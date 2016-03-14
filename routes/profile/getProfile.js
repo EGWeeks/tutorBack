@@ -28,10 +28,11 @@ function getProfile(req, res) {
       });
     })
     .catch(function(err) {
-      console.log('Get Profile Error ' + err);
+      console.log(err);
+      res.json('Get Profile Error ' + err);
     });
   } else {
-    console.log('token id and request parameters did not match');
+    res.json('token id and request parameters did not match');
   }
 }
 
