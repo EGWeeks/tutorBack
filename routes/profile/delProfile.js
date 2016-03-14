@@ -27,4 +27,5 @@ function deleteProfile(req, res) {
 	}
 }
 
+
 module.exports = deleteProfile;
