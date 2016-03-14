@@ -14,8 +14,7 @@ function getOneUserHandler(req, res) {
   .then(function(userData) {
     delete userData.password;
     res.json( {
-      user: userData,
-      session: req.session
+      user: userData
     });
   });
 }
