@@ -11,6 +11,8 @@ var users = require('./routes/users'),
   profile = require('./routes/profile');
 
 var app = express();
+
+require('dotenv').load();
  
 app.use(cors());
 // uncomment after placing your favicon in /public
