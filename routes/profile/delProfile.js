@@ -21,9 +21,13 @@ function deleteProfile(req, res) {
 	  .del()
 	  .then(function() {
 	    res.json('Deleted user: ' + req.params.id);
+	  })
+	  .catch(function(err){
+	  	console.log(err);
+	  	res.json('Delete Profile Error ' + err);
 	  });
 	} else {
-  	console.log('token id and request parameters did not match');
+  	res.json('token id and request parameters did not match');
 	}
 }
 
