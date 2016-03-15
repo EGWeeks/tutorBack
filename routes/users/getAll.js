@@ -6,7 +6,7 @@ var Table = require('../../db/knex'),
 // GET ‘/’ - shows all resources
 function getAllUsersHandler(req, res) {
   Users()
-  .select('first_name', 'last_name', 'email')
+  .select('first_name', 'last_name', 'email', 'bio', 'location', 'img')
   .then(function(usersData) {
     res.send( {
       title: 'Users',

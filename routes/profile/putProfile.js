@@ -21,7 +21,10 @@ function putProfile(req, res){
     user.first_name = req.body.firstName;
     user.last_name  = req.body.lastName;
     user.email      = req.body.email;
-    //KNEX - if key hwas value of undefined it should be ignored 
+    user.bio        = req.body.bio;
+    user.location   = req.body.area;
+    user.img        = req.body.img;
+    //KNEX - if key has a value of undefined it should be ignored 
     user.password   = req.body.password;
 
     crypto.hashPassword(user, function() {

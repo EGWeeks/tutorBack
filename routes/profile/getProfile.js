@@ -19,7 +19,7 @@ function getProfile(req, res) {
       id: Number(req.params.id)
     })
     .first()
-    .select('first_name', 'last_name', 'email')
+    .select('first_name', 'last_name', 'email', 'bio', 'location', 'img')
     .then(function(userData) {
       delete userData.password;
       // console.log(userData);
