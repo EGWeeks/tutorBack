@@ -26,7 +26,7 @@ function putProfile(req, res){
     user.img        = req.body.img;
     //KNEX - if key has a value of undefined it should be ignored 
     user.password   = req.body.password;
-
+    
     crypto.hashPassword(user, function() {
       Users()
       .where({

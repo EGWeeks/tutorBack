@@ -8,7 +8,8 @@ var expressJWT = require('express-jwt');
 var cors = require('cors');
 
 var users = require('./routes/users'),
-  profile = require('./routes/profile');
+  profile = require('./routes/profile'),
+  posts   = require('./routes/posts');
 
 var app = express();
 
@@ -25,6 +26,8 @@ app.use(expressJWT({secret: process.env.JWT_SECRET})
 
 app.use('/users', users);
 app.use('/profile', profile);
+app.use('/posts', posts);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
