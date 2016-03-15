@@ -14,6 +14,9 @@ function postNewUserHandler(req, res) {
   user.last_name  = req.body.lastName;
   user.email      = req.body.email;
   user.password   = req.body.password;
+  user.bio        = req.body.bio;
+  user.location   = req.body.area;
+  user.img        = req.body.img;
 
   crypto.hashPassword(user, function() {
     Users()
