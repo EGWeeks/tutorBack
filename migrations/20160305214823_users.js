@@ -7,9 +7,10 @@ exports.up = function(knex, Promise) {
 	    table.string('first_name', 120); // first_name --> VARCHAR(120)
 	    table.string('last_name', 120); // last_name --> VARCHAR(120)
 	    table.string('email').unique().notNullable(); // email --> VARCHAR(255) Unique Not Null
-	    table.text('bio'); // bio --> text
+	    table.text('bio'); // bio --> TEXT
 	    table.string('location'); // location --> VARCHAR(255)
 	    table.string('password'); // password --> VARCHAR(255)
+	    table.text('img'); // image --> TEXT
 	  }),
 
 	  knex.schema.createTable('user_post', function(table){
