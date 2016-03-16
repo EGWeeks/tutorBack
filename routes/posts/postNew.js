@@ -1,8 +1,7 @@
 'use strict';
 
 var Table = require('../../db/knex'),
-    Posts = Table('posts'),
- UserPost = Table('user_post');
+    Posts = Table('posts');
    
 // POST ‘/new’ - creates individual
 function newPostHandler(req, res) {
@@ -13,18 +12,14 @@ function newPostHandler(req, res) {
   post.rate    = req.body.rate;
   post.avail   = req.body.avail;
   post.desc    = req.body.desc;
-
+  post.user_id = req.body.user_id;
+  // TODO: ?efficient way to return the data needed
+  // TODO: ?nesting .then()?
   Posts()
-    .returning()
-    .insert(post, 'id')
-    .then(function(id) {
-      return id;
-    })
-    .then(function(postId) {
-      var ids = {};
-      ids.user_id = req.body.user_id;
-      ids.post_id = parseFloat(postId);
-      return UserPost().insert(ids, 'id');
+    .returning('subject', 'type', 'rate', 'avail', 'desc', 'user_id')
+    .insert(post)
+    .then(function(postInfo) {
+      res.json(postInfo);
     })
     .catch(function(err) {
       res.send('Error handling your post submission. Error: ' + err);
