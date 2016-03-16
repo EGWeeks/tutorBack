@@ -1,7 +1,8 @@
 'use strict';
 
 var Table = require('../../db/knex'),
-    Posts = Table('posts');
+    Posts = Table('posts'),
+ UserPost = Table('user_post');
    
 // POST ‘/new’ - creates individual
 function newPostHandler(req, res) {
@@ -17,10 +18,13 @@ function newPostHandler(req, res) {
     .returning()
     .insert(post, 'id')
     .then(function(id) {
-      console.log('id ----- '+ id);
+      return id;
     })
-    .then(function(something) {
-      console.log('something________ '+ something);
+    .then(function(postId) {
+      var ids = {};
+      ids.user_id = req.body.user_id;
+      ids.post_id = parseFloat(postId);
+      return UserPost().insert(ids, 'id');
     })
     .catch(function(err) {
       res.send('Error handling your post submission. Error: ' + err);
