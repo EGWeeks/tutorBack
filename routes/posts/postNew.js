@@ -20,9 +20,8 @@ function newPostHandler(req, res) {
   var formattedExpire = new Date(milliExpire);
 
   var post = {};
-  //newly created posts get a default value of 'active'
+  
   post.user_id    = req.body.user_id;
-  post.status     = 'active';
   post.type       = req.body.type;
   post.subject    = req.body.subject;
   post.avail      = req.body.avail;
@@ -30,9 +29,9 @@ function newPostHandler(req, res) {
   post.rate       = req.body.rate;
   post.created_at = today;
   post.expiration = formattedExpire;
-  
-  // TODO: ?efficient way to return the data needed
-  // TODO: ?nesting .then()?
+  //newly created posts get a default value of 'active'
+  post.status     = 'active';
+
   Posts()
     .returning('user_id', 'status', 'type', 'subject', 'avail', 'desc', 'rate', 'created_at', 'expiration')
     .insert(post)
