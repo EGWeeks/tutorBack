@@ -5,7 +5,7 @@ var Table = require('../../db/knex'),
    
 // POST ‘/new’ - creates individual
 function newPostHandler(req, res) {
-  var post = {};
+
   //Created at date
   var today = new Date();
 
@@ -19,8 +19,10 @@ function newPostHandler(req, res) {
   //(example: Thu Mar 17 2016 20:10:51 GMT-0600 (MDT))
   var formattedExpire = new Date(milliExpire);
 
+  var post = {};
+  //newly created posts get a default value of 'active'
   post.user_id    = req.body.user_id;
-  post.status     = req.body.status;
+  post.status     = 'active';
   post.type       = req.body.type;
   post.subject    = req.body.subject;
   post.avail      = req.body.avail;
@@ -32,7 +34,7 @@ function newPostHandler(req, res) {
   // TODO: ?efficient way to return the data needed
   // TODO: ?nesting .then()?
   Posts()
-    .returning('subject', 'type', 'rate', 'avail', 'desc', 'user_id')
+    .returning('user_id', 'status', 'type', 'subject', 'avail', 'desc', 'rate', 'created_at', 'expiration')
     .insert(post)
     .then(function(postInfo) {
       res.json(postInfo);
