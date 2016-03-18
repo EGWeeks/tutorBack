@@ -15,12 +15,15 @@ exports.up = function(knex, Promise) {
 
 	  knex.schema.createTable('posts', function(table) {
 	  	table.increments(); // id --> SERIAL PRIMARY KEY
+	  	table.integer('user_id'); // user ID --> INTEGER
+	  	table.string('status'); // status --> VARCHAR(255) active || removed || expired
+	  	table.string('type'); // type --> VARCHAR(255) instuctor || student
 	  	table.string('subject'); // subject --> VARCHAR(255)
-	  	table.string('type'); // type --> VARCHAR(255) instuctor or student
-	  	table.integer('rate'); // rate --> INTEGER hourly rate
 	  	table.string('avail'); // avaiblable --> VARCHAR(255)
 	  	table.string('desc'); // description --> VARCHAR(255)
-	  	table.integer('user_id'); // user ID --> INTEGER
+	  	table.string('rate'); // rate --> INTEGER hourly rate price in decimal || n/a
+	  	table.timestamp('created_at'); // created_at --> new Date();
+	  	table.timestamp('expiration'); // expiration --> new Date(); 30 days + created_at
 	  })
 	]);
 };
