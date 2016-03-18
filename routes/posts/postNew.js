@@ -6,13 +6,29 @@ var Table = require('../../db/knex'),
 // POST ‘/new’ - creates individual
 function newPostHandler(req, res) {
   var post = {};
+  //Created at date
+  var today = new Date();
 
-  post.subject = req.body.subject;
-  post.type    = req.body.type;
-  post.rate    = req.body.rate;
-  post.avail   = req.body.avail;
-  post.desc    = req.body.desc;
-  post.user_id = req.body.user_id;
+  //Creating a new date 
+  var expire = new Date();
+  //milliExpire is 30 days from right now 
+  //returns millseconds
+  var milliExpire = expire.setDate(expire.getDate() + 30);
+  //milliExpire is 30 days from date in milliseconds
+  //formattedExpire formats milliseond to normailized data
+  //(example: Thu Mar 17 2016 20:10:51 GMT-0600 (MDT))
+  var formattedExpire = new Date(milliExpire);
+
+  post.user_id    = req.body.user_id;
+  post.status     = req.body.status;
+  post.type       = req.body.type;
+  post.subject    = req.body.subject;
+  post.avail      = req.body.avail;
+  post.desc       = req.body.desc;
+  post.rate       = req.body.rate;
+  post.created_at = today;
+  post.expiration = formattedExpire;
+  
   // TODO: ?efficient way to return the data needed
   // TODO: ?nesting .then()?
   Posts()
