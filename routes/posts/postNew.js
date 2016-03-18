@@ -33,7 +33,6 @@ function newPostHandler(req, res) {
   post.status     = 'active';
 
   Posts()
-    .returning('user_id', 'status', 'type', 'subject', 'avail', 'desc', 'rate', 'created_at', 'expiration')
     .insert(post)
     .then(function(postInfo) {
       res.json(postInfo);
