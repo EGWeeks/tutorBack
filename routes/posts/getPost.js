@@ -14,7 +14,7 @@ function getOneUserHandler(req, res) {
   .first()
   .select()
   .then(function(postData) {
-    res.json( {
+    res.json({
       post: postData
     });
   });
