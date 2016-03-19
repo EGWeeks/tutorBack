@@ -5,8 +5,7 @@ var Table = require('../../db/knex.js'),
 
 // GET ‘/:id’ - shows individual resource
 function getOneUserHandler(req, res) {
-  console.log(req.params.id);
-  console.log(req.params.post);
+
   Posts()
   .where({
     id: Number(req.params.post),
@@ -15,7 +14,7 @@ function getOneUserHandler(req, res) {
   .first()
   .select()
   .then(function(postData) {
-    res.json( {
+    res.json({
       post: postData
     });
   });

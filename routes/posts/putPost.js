@@ -15,35 +15,45 @@ function putProfile(req, res){
 
   if(decoded.id === paramsId) {
 
-    //Created at date
-    var today = new Date();
+    // ONLY update the the created_at and expiration date
+    // if status equals Active
+    var dates = {};
+    if(req.body.status === 'Active') {
+      //Created at date
+      dates.today = new Date();
 
-    //Creating a new date 
-    var expire = new Date();
-    //milliExpire is 30 days from right now 
-    //returns millseconds
-    var milliExpire = expire.setDate(expire.getDate() + 30);
-    //milliExpire is 30 days from date in milliseconds
-    //formattedExpire formats milliseond to normailized data
-    //(example: Thu Mar 17 2016 20:10:51 GMT-0600 (MDT))
-    var formattedExpire = new Date(milliExpire);
+      //Creating a new date 
+      var expire = new Date();
+      //milliExpire is 30 days from right now 
+      //returns millseconds
+      var milliExpire = expire.setDate(expire.getDate() + 30);
+      //milliExpire is 30 days from date in milliseconds
+      //formattedExpire formats milliseond to normailized data
+      //(example: Thu Mar 17 2016 20:10:51 GMT-0600 (MDT))
+      dates.expire = new Date(milliExpire);
+    } else {
+      // Being explicit setting dates to undefined
+      // KNEX will not update the fields with a value of undefined
+      dates.today  = undefined;
+      dates.expire = undefined;
+    }
 
     var post = {};
 
+    post.status     = req.body.status;
     post.subject    = req.body.subject;
     post.type       = req.body.type;
     post.avail      = req.body.avail;
     post.desc       = req.body.desc;
     post.rate       = req.body.rate;
-    post.created_at = today;
-    post.expiration = formattedExpire;
-    post.status     = 'active';
+    post.created_at = dates.today;
+    post.expiration = dates.expire;
     //KNEX - if key has a value of undefined it should be ignored 
     
     Posts()
     .where({
-      id: Number(req.params.post),
-      user_id : Number(req.params.id)
+      id: Number(req.params.post), // post_id
+      user_id : Number(req.params.id) // user_id
     })
     .update(post)
     .then(function() {
