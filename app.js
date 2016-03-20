@@ -9,7 +9,8 @@ var cors = require('cors');
 
 var users = require('./routes/users'),
   profile = require('./routes/profile'),
-  posts   = require('./routes/posts');
+  posts   = require('./routes/posts'),
+  feed    = require('./routes/feed');
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use(expressJWT({secret: process.env.JWT_SECRET})
 app.use('/users', users);
 app.use('/profile', profile);
 app.use('/posts', posts);
+app.use('/feed', feed);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
