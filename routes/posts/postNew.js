@@ -30,7 +30,7 @@ function newPostHandler(req, res) {
   post.created_at = today;
   post.expiration = formattedExpire;
   //newly created posts get a default value of 'active'
-  post.status     = 'active';
+  post.status     = 'Active';
 
   Posts()
     .insert(post)
