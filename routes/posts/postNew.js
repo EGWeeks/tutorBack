@@ -18,7 +18,7 @@ function newPostHandler(req, res) {
   //formattedExpire formats milliseond to normailized data
   //(example: Thu Mar 17 2016 20:10:51 GMT-0600 (MDT))
   var formattedExpire = new Date(milliExpire);
-
+  
   var post = {};
   
   post.user_id    = req.body.user_id;
@@ -35,6 +35,7 @@ function newPostHandler(req, res) {
   Posts()
     .insert(post)
     .then(function(postInfo) {
+      console.log(postInfo);
       res.json(postInfo);
     })
     .catch(function(err) {

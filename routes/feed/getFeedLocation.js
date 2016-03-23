@@ -7,7 +7,9 @@ var Table = require('../../db/knex.js'),
 function getFeedLocation(req, res) {
   //Query posts and users table where status equals 'Active' limited to 15 rows
   Users()
-  .select('location', 'id')
+  .innerJoin('posts', 'users.id', 'posts.user_id')
+  .where('posts.status', '=', 'Active')
+  .select('posts.id', 'location')
   .then(function(location) {
     res.json({
       users: location
