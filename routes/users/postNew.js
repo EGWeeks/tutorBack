@@ -31,10 +31,10 @@ function postNewUserHandler(req, res) {
         .insert(user, 'id')
         .then(function(id) {
           var myToken = jwt.sign({"id": id[0], "user": req.body.email}, process.env.JWT_SECRET);
-          res.json({id: id[0], token: myToken});
+          res.json({id: id[0], location: req.body.area, token: myToken});
         })
         .catch(function(err) {
-          res.send('Error handling your submission');
+          res.send('Error handling your submission' + err);
         });
       } else {
         res.status(409);
