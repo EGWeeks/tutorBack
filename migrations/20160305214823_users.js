@@ -9,6 +9,9 @@ exports.up = function(knex, Promise) {
 	    table.string('email').unique().notNullable(); // email --> VARCHAR(255) Unique Not Null
 	    table.text('bio'); // bio --> TEXT
 	    table.string('location'); // location --> VARCHAR(255)
+	    table.string('zip'); // zip code --> VARCHAR(255)
+	    table.string('lat'); // latitude --> VARCHAR(255)
+	    table.string('lng'); // longitude --> VARCHAR(255)
 	    table.string('password'); // password --> VARCHAR(255)
 	    table.text('img'); // image --> TEXT
 	  }),
@@ -18,7 +21,7 @@ exports.up = function(knex, Promise) {
 	  	table.integer('user_id'); // user ID --> INTEGER
 	  	table.string('status'); // status --> VARCHAR(255) active || removed || expired
 	  	table.string('type'); // type --> VARCHAR(255) instuctor || student
-	  	table.string('subject'); // subject --> VARCHAR(255)
+	  	table.string('sport'); // subject --> VARCHAR(255)
 	  	table.string('avail'); // avaiblable --> VARCHAR(255)
 	  	table.string('desc'); // description --> VARCHAR(255)
 	  	table.string('rate'); // rate --> INTEGER hourly rate price in decimal || n/a
