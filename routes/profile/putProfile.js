@@ -23,6 +23,9 @@ function putProfile(req, res){
     user.email      = req.body.email;
     user.bio        = req.body.bio;
     user.location   = req.body.area;
+    user.zip        = req.body.zip;
+    user.lat        = req.body.lat;
+    user.lng        = req.body.lng;
     user.img        = req.body.img;
     //KNEX - if key has a value of undefined it should be ignored 
     user.password   = req.body.password;

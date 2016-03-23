@@ -23,7 +23,7 @@ function newPostHandler(req, res) {
   
   post.user_id    = req.body.user_id;
   post.type       = req.body.type;
-  post.subject    = req.body.subject;
+  post.sport      = req.body.sport;
   post.avail      = req.body.avail;
   post.desc       = req.body.desc;
   post.rate       = req.body.rate;

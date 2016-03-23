@@ -41,7 +41,7 @@ function putProfile(req, res){
     var post = {};
 
     post.status     = req.body.status;
-    post.subject    = req.body.subject;
+    post.sport      = req.body.sport;
     post.type       = req.body.type;
     post.avail      = req.body.avail;
     post.desc       = req.body.desc;

@@ -9,7 +9,7 @@ function getFeedLocation(req, res) {
   Users()
   .innerJoin('posts', 'users.id', 'posts.user_id')
   .where('posts.status', '=', 'Active')
-  .select('posts.id', 'location')
+  .select('posts.id', 'location', 'lat', 'lng')
   .then(function(location) {
     res.json({
       users: location
