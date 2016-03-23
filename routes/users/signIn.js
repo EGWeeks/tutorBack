@@ -18,7 +18,7 @@ function signInUserHandler(req, res) {
       if(isEqual) {
         delete user.password;
         var myToken = jwt.sign({"id": user.id, "user": req.body.email}, process.env.JWT_SECRET);
-        res.json({id: user.id, token : myToken});
+        res.json({id: user.id, location: user.location, token : myToken});
       } else {
         res.status(401).send('Invalid username or password');
       }
