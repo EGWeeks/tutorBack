@@ -7,16 +7,15 @@ var Table = require('../../db/knex.js'),
 function getPostById(req, res) {
 
   Posts()
-  .where({
-    id: Number(req.params.id)
-  })
-  .first()
-  .select()
-  .then(function(postData) {
-    res.json({
-      post: postData
+    .innerJoin('users', 'posts.user_id', 'users.id')
+    .where('posts.id', '=', req.params.id)
+    .select()
+    .then(function(postData) {
+      console.log(postData);
+      res.json({
+        post: postData
+      });
     });
-  });
 }
 
 module.exports = getPostById;
