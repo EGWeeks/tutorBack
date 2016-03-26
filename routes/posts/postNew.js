@@ -27,6 +27,9 @@ function newPostHandler(req, res) {
   post.avail      = req.body.avail;
   post.desc       = req.body.desc;
   post.rate       = req.body.rate;
+  post.location   = req.body.location;
+  post.lat        = req.body.lat;
+  post.lng        = req.bodu.lng;
   post.created_at = today;
   post.expiration = formattedExpire;
   //newly created posts get a default value of 'active'
