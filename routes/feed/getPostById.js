@@ -11,7 +11,6 @@ function getPostById(req, res) {
     .where('posts.id', '=', req.params.id)
     .select()
     .then(function(postData) {
-      console.log(postData);
       res.json({
         post: postData
       });
