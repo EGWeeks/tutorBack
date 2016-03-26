@@ -46,6 +46,9 @@ function putProfile(req, res){
     post.avail      = req.body.avail;
     post.desc       = req.body.desc;
     post.rate       = req.body.rate;
+    post.location   = req.body.location;
+    post.lat        = req.body.lat;
+    post.lng        = req.body.lng;
     post.created_at = dates.today;
     post.expiration = dates.expire;
     //KNEX - if key has a value of undefined it should be ignored 
