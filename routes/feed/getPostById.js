@@ -11,6 +11,8 @@ function getPostById(req, res) {
     .where('posts.id', '=', req.params.id)
     .select()
     .then(function(postData) {
+      delete postData[0].password;
+      console.log(postData);
       res.json({
         post: postData
       });
