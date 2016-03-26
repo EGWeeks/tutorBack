@@ -25,6 +25,9 @@ exports.up = function(knex, Promise) {
 	  	table.string('avail'); // avaiblable --> VARCHAR(255)
 	  	table.string('desc'); // description --> VARCHAR(255)
 	  	table.string('rate'); // rate --> INTEGER hourly rate price in decimal || n/a
+	  	table.string('location'); // location --> VARCHAR(255) readable city and state
+	  	table.string('lat'); // latitude --> VARCHAR(255)
+	    table.string('lng'); // longitude --> VARCHAR(255)
 	  	table.timestamp('created_at'); // created_at --> new Date();
 	  	table.timestamp('expiration'); // expiration --> new Date(); 30 days + created_at
 	  })
