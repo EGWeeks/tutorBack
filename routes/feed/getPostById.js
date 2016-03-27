@@ -12,7 +12,6 @@ function getPostById(req, res) {
     .select()
     .then(function(postData) {
       delete postData[0].password;
-      console.log(postData);
       res.json({
         post: postData
       });
