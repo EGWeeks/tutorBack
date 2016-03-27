@@ -8,7 +8,10 @@ function getOneUserHandler(req, res) {
   //Query posts and users table where status equals 'Active' limited to 15 rows
   Posts()
   .join('users', 'posts.user_id', '=', 'users.id')
-  .where('sport', req.params.sport)
+  .where({
+    sport: req.params.sport,
+    type: req.params.type
+    })
   .select('posts.id', 'user_id', 'type', 'sport', 'avail', 'desc', 'rate', 'created_at', 'first_name', 'last_name', 'email', 'bio', 'users.location', 'img')
   .then(function(postData) {
     console.log(postData);
