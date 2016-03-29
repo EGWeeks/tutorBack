@@ -9,7 +9,7 @@ function getOneUserHandler(req, res) {
   Posts()
   .join('users', 'posts.user_id', '=', 'users.id')
   .where('status', 'Active')
-  .select('posts.id', 'user_id', 'type', 'sport', 'avail', 'desc', 'rate', 'created_at', 'first_name', 'last_name', 'email', 'bio', 'users.location', 'img')
+  .select('posts.id', 'user_id', 'type', 'sport', 'avail', 'desc', 'rate', 'created_at', 'first_name', 'last_name', 'email', 'bio', 'posts.location', 'img')
   .then(function(postData) {
     res.json({
       posts: postData
