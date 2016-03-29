@@ -13,7 +13,11 @@
     "express-jwt": "^3.3.0",
     "jsonwebtoken": "^5.7.0",
     "morgan": "~1.6.1",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "dotenv": "^2.0.0",
+    "bcrypt": "^0.8.5",
+    "knex": "^0.10.0",
+    "pg": "^4.5.1"
   },
   "devDependencies": {
     "bcrypt": "^0.8.5",
