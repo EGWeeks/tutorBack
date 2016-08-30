@@ -1,4 +1,4 @@
-# Back end for [backwoodscontact](https://backwoodscontact.xyz)
+# Back end for [Backwoods Contact](https://backwoodscontact.xyz)
 
 This app is hosted on Heroku's free service and may take a few seconds to load.
 
