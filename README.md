@@ -11,4 +11,5 @@ This app is hosted on Heroku's free service and may take a few seconds to load.
 	- PostgreSQL
 	- Heroku hosting
 
-	Front end repo [here.](https://github.com/EGWeeks/tutorfront)
+
+Front end repo [here.](https://github.com/EGWeeks/tutorfront)
