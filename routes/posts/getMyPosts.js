@@ -7,35 +7,33 @@ var Table = require('../../db/knex.js'),
 
 // GET ‘my/:id’ - shows user posts 
 function getUserPostsHandler(req, res) {
-  console.log("stuff...............stufff");
-  var currentDate = new Date();  
-
+  var currentDate = new Date(2020, 1);
+  console.log(currentDate);
   Posts()
     .where({
       user_id: Number(req.params.id)
     })
     .select()
     .then(function(data) {
-
-      data.forEach(function(post){
-        // Check all rows with status = Active and if todays date is greater than expiration date
-        if(post.status === 'Active' && currentDate > post.expiration) {
-          console.log(post.expiration + ' made into the post.status if');
-          // If expired Update that row status = Expired
-          Posts()
-            .where({
-              id: post.id
-            })
-            .update('status', 'Expired');
-
-          // Change the status property in post to Expired
-          // Before sending to the client
-          post.status = 'Expired';
+      Promise.all(data.map(function(post){
+        if(post.status === 'Active' && currentDate >= post.expiration) {
+          return Posts()
+            .where({id: post.id})
+            .update('status', 'Expired')
+            .then(function() {
+              post.status = 'Expired';
+              return post.status;
+            });        
+        } else {
+          return post.status;
         }
-      });
-
-      res.json( {
-        posts: data
+      }))
+      .then(function() {
+        res.json({
+          posts: data
+        });
+      }).catch(function(err) {
+        console.log(err);
       });
     });
 }
