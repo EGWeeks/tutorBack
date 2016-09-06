@@ -9,8 +9,10 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
-      user: process.env.DATABASE_USER,
-      database: process.env.DATABASE_NAME
+      host     : '127.0.0.1',
+      user     : process.env.DATABASE_USER,
+      password : process.env.DATABASE_PASS,
+      database : process.env.DATABASE_NAME
     }
   },
 
